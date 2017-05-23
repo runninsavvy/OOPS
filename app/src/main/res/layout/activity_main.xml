@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="arin.oops.MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="false"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/arin"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="145dp"
+        android:layout_height="90dp"
+        android:onClick="playfat"
+        android:text="Fat Cock"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.904"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="145dp"
+        android:layout_height="90dp"
+        android:layout_marginLeft="32dp"
+        android:onClick="playoops"
+        android:text="OOPS"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.725"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintRight_toLeftOf="@+id/button8" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="145dp"
+        android:layout_height="90dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
+        android:onClick="playpre"
+        android:text="PRE"
+        app:layout_constraintBottom_toBottomOf="@+id/button6"
+        app:layout_constraintTop_toTopOf="@+id/button6"
+        android:layout_marginRight="8dp"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.9" />
+
+</android.support.constraint.ConstraintLayout>
