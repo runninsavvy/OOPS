@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         fatplayer = MediaPlayer.create(MainActivity.this, R.raw.fat);
         jonplayer = MediaPlayer.create(MainActivity.this, R.raw.jon);
         jon = (ImageView) findViewById(R.id.imageView);
+        jon.setVisibility(View.INVISIBLE);
         addListenerOnButton();
         /*Thread jonDetector = new Thread() {
             public void run() {
@@ -87,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
                     jonplayer.seekTo(0);
                 }
                 jonplayer.start();
+                while(jonplayer.isPlaying()) {
+                }
+                jon.setVisibility(View.GONE);
             }
         });
     }
