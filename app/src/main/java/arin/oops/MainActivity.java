@@ -10,14 +10,16 @@ import android.widget.ImageView;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import java.util.Random;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private MediaPlayer oopsplayer;
     private MediaPlayer preplayer;
     private MediaPlayer fatplayer;
-    private MediaPlayer jonplayer;
-    ImageView jon;
+    //private MediaPlayer jonplayer;
+    //ImageView jon;
     Button oopsButton;
     Button preButton;
     Button fatButton;
@@ -30,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         oopsplayer = MediaPlayer.create(MainActivity.this, R.raw.oops);
         preplayer = MediaPlayer.create(MainActivity.this, R.raw.pre);
         fatplayer = MediaPlayer.create(MainActivity.this, R.raw.fat);
-        jonplayer = MediaPlayer.create(MainActivity.this, R.raw.jon);
-        jon = (ImageView) findViewById(R.id.imageView);
+        //jonplayer = MediaPlayer.create(MainActivity.this, R.raw.jon);
+        //jon = (ImageView) findViewById(R.id.imageView);
         addListenerOnButton();
     }
 
@@ -73,10 +75,6 @@ public class MainActivity extends AppCompatActivity {
         arinButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (jonplayer.isPlaying()) {
-                    jonplayer.seekTo(0);
-                }
-                jonplayer.start();
                 startLooker();
             }
         });
@@ -84,8 +82,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void startLooker() {
         asyncTask = new AsyncTask<Void, Void, Void>() {
+            Random x = new Random();
+            Random y = new Random();
+            MediaPlayer jonplayer = MediaPlayer.create(MainActivity.this, R.raw.jon);
+            ImageView jon = (ImageView) findViewById(R.id.imageView);
             @Override
             protected void onPreExecute() {
+                int xPos =  x.nextInt(182 + 75) - 75;
+                int yPos = y.nextInt(153 + 35) - 35;
+                jon.setX(xPos);
+                jon.setY(yPos);
+                jonplayer.start();
                 jon.setVisibility(View.VISIBLE);
             }
             @Override
