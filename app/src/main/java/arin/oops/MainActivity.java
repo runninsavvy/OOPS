@@ -1,5 +1,6 @@
 package arin.oops;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.media.MediaPlayer;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     Button preButton;
     Button fatButton;
     ImageButton arinButton;
+    AsyncTask<Void, Void, Void> asyncTask;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,19 +32,7 @@ public class MainActivity extends AppCompatActivity {
         fatplayer = MediaPlayer.create(MainActivity.this, R.raw.fat);
         jonplayer = MediaPlayer.create(MainActivity.this, R.raw.jon);
         jon = (ImageView) findViewById(R.id.imageView);
-        jon.setVisibility(View.INVISIBLE);
         addListenerOnButton();
-        /*Thread jonDetector = new Thread() {
-            public void run() {
-                if(jonplayer.isPlaying()) {
-                    jon.setVisibility(View.VISIBLE);
-                }
-                else {
-                    jon.setVisibility(View.INVISIBLE);
-                }
-            }
-        };
-        jonDetector.start();*/
     }
 
     public void addListenerOnButton() {
@@ -83,15 +73,34 @@ public class MainActivity extends AppCompatActivity {
         arinButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                jon.setVisibility(View.VISIBLE);
                 if (jonplayer.isPlaying()) {
                     jonplayer.seekTo(0);
                 }
                 jonplayer.start();
-                while(jonplayer.isPlaying()) {
-                }
-                jon.setVisibility(View.GONE);
+                startLooker();
             }
         });
+    }
+
+    public void startLooker() {
+        asyncTask = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected void onPreExecute() {
+                jon.setVisibility(View.VISIBLE);
+            }
+            @Override
+            protected Void doInBackground(Void...params) {
+                while (jonplayer.isPlaying()) {
+                }
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void a) {
+                jon.setVisibility(View.INVISIBLE);
+            }
+            @Override
+            protected void onProgressUpdate(Void...params) {
+            }
+        }.execute();
     }
 }
